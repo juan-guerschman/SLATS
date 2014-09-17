@@ -1,0 +1,69 @@
+;Write a very simple program that returns the IDL variable type ID as a string
+; given the IDL variable type ID number (or vice versa:)
+FUNCTION get_IDL_vartype_ID, IDL_var_ID=IDL_var_ID, UNDEFINED=UNDEFINED, BYTE_TYPE=BYTE_TYPE,       $
+                             INT_TYPE=INT_TYPE, LONG_TYPE=LONG_TYPE, LONG64_TYPE=LONG64_TYPE,       $
+                             FLT_TYPE=FLT_TYPE, DBL_TYPE=DBL_TYPE, COMPLEX_TYPE=COMPLEX_TYPE,       $
+                             STR_TYPE=STR_TYPE, STRUCT_TYPE=STRUCT_TYPE, UNINT_TYPE=UNINT_TYPE,     $
+                             DCOMPLEX_TYPE=DCOMPLEX_TYPE, PTR_TYPE=PTR_TYPE, ULONG_TYPE=ULONG_TYPE, $
+                             ULONG64_TYPE=ULONG64_TYPE, OBJ_TYPE=OBJ_TYPE, HELP=HELP
+
+  TRUE   =   1
+  FALSE  =   0
+  ERROR  =  -1
+  UNDEF  =   0
+  
+  IF(KEYWORD_SET(HELP)  EQ  TRUE)  THEN  BEGIN
+    print, 'Input arguments for: get_IDL_vartype_ID'
+    print, 'FUNCTION get_IDL_vartype_ID, IDL_var_ID=IDL_var_ID, UNDEFINED=UNDEFINED, BYTE_TYPE=BYTE_TYPE,       $'
+    print, '                             INT_TYPE=INT_TYPE, LONG_TYPE=LONG_TYPE, LONG64_TYPE=LONG64_TYPE,       $'
+    print, '                             FLT_TYPE=FLT_TYPE, DBL_TYPE=DBL_TYPE, COMPLEX_TYPE=COMPLEX_TYPE,       $'
+    print, '                             STR_TYPE=STR_TYPE, STRUCT_TYPE=STRUCT_TYPE, UNINT_TYPE=UNINT_TYPE,     $'
+    print, '                             DCOMPLEX_TYPE=DCOMPLEX_TYPE, PTR_TYPE=PTR_TYPE, ULONG_TYPE=ULONG_TYPE, $'
+    print, '                             ULONG64_TYPE=ULONG64_TYPE, OBJ_TYPE=OBJ_TYPE, HELP=HELP
+  
+    RETURN, FALSE
+  ENDIF
+  
+  
+  IF(N_ELEMENTS(IDL_var_ID)  NE  UNDEF)  THEN  BEGIN
+ 
+   IF(IDL_var_ID  EQ  00)  THEN  RETURN, 'UNDEFINED'
+   IF(IDL_var_ID  EQ  01)  THEN  RETURN, 'BYTE_TYPE'
+   IF(IDL_var_ID  EQ  02)  THEN  RETURN, 'INT_TYPE'
+   IF(IDL_var_ID  EQ  03)  THEN  RETURN, 'LONG_TYPE'
+   IF(IDL_var_ID  EQ  14)  THEN  RETURN, 'LONG64_TYPE'
+   IF(IDL_var_ID  EQ  04)  THEN  RETURN, 'FLT_TYPE'
+   IF(IDL_var_ID  EQ  05)  THEN  RETURN, 'DBL_TYPE'
+   IF(IDL_var_ID  EQ  06)  THEN  RETURN, 'COMPLEX_TYPE'
+   IF(IDL_var_ID  EQ  07)  THEN  RETURN, 'STR_TYPE'
+   IF(IDL_var_ID  EQ  08)  THEN  RETURN, 'STRUCT_TYPE'
+   IF(IDL_var_ID  EQ  12)  THEN  RETURN, 'UNINT_TYPE'
+   IF(IDL_var_ID  EQ  09)  THEN  RETURN, 'DCOMPLEX_TYPE'
+   IF(IDL_var_ID  EQ  10)  THEN  RETURN, 'PTR_TYPE'
+   IF(IDL_var_ID  EQ  13)  THEN  RETURN, 'ULONG_TYPE'
+   IF(IDL_var_ID  EQ  15)  THEN  RETURN, 'ULONG64_TYPE'
+   IF(IDL_var_ID  EQ  14)  THEN  RETURN, 'OBJ_TYPE'
+  ENDIF
+
+  IF(KEYWORD_SET(UNDEFINED)      EQ  TRUE) THEN RETURN, 00
+  IF(KEYWORD_SET(BYTE_TYPE)      EQ  TRUE) THEN RETURN, 01
+  IF(KEYWORD_SET(INT_TYPE)       EQ  TRUE) THEN RETURN, 02
+  IF(KEYWORD_SET(LONG_TYPE)      EQ  TRUE) THEN RETURN, 03
+  IF(KEYWORD_SET(LONG64_TYPE)    EQ  TRUE) THEN RETURN, 14
+  IF(KEYWORD_SET(FLT_TYPE)       EQ  TRUE) THEN RETURN, 04
+  IF(KEYWORD_SET(DBL_TYPE)       EQ  TRUE) THEN RETURN, 05
+  IF(KEYWORD_SET(COMPLEX_TYPE)   EQ  TRUE) THEN RETURN, 06
+  IF(KEYWORD_SET(STR_TYPE)       EQ  TRUE) THEN RETURN, 07
+  IF(KEYWORD_SET(STRUCT_TYPE)    EQ  TRUE) THEN RETURN, 08
+  IF(KEYWORD_SET(UNINT_TYPE)     EQ  TRUE) THEN RETURN, 12
+  IF(KEYWORD_SET(DCOMPLEX_TYPE)  EQ  TRUE) THEN RETURN, 09
+  IF(KEYWORD_SET(PTR_TYPE)       EQ  TRUE) THEN RETURN, 10
+  IF(KEYWORD_SET(ULONG_TYPE)     EQ  TRUE) THEN RETURN, 13
+  IF(KEYWORD_SET(ULONG64_TYPE)   EQ  TRUE) THEN RETURN, 15
+  IF(KEYWORD_SET(OBJ_TYPE)       EQ  TRUE) THEN RETURN, 11
+
+  ;If we reach this point, we return an ERROR flag
+  print, 'get_IDL_vartype_ID: Incorrect/incompatible arguments.'
+  print, '                    Enter get_IDL_vartype_ID(/HELP) for more information'
+  RETURN, ERROR
+END
